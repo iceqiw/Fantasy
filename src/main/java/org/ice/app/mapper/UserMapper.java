@@ -8,6 +8,6 @@ import org.ice.app.domain.User;
  */
 public interface UserMapper {
     @Select("select * from user where id=#{id}")
-    public User getById(final Long id);
+    User getById(final Long id);
 
 }

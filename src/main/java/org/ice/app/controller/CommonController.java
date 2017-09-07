@@ -65,5 +65,13 @@ public class CommonController {
         }
     }
 
+    @GET
+    @Path("jxSearch/{topic}")
+    @Produces(CMediaType.TEXT_PLAIN)
+    public String getUser(@PathParam("topic") String topic) {
+        return commonService.searchTopic(topic);
+
+    }
+
 
 }

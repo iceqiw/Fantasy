@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by admin on 2017/7/4.
+ * @author qiwei
+ * @time 2017/9/7
+ * @description  jersey 模块
  */
 public class WebModule extends ServletModule {
 
