@@ -13,6 +13,7 @@ public class LoggerMethodInterceptor implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         String methodName = invocation.getMethod().getName();
+
         long startTime = System.nanoTime();
         logger.info("{},{}", methodName, startTime);
         return invocation.proceed();

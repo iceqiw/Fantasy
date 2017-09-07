@@ -1,17 +1,20 @@
 package org.ice.app.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.google.inject.Inject;
-import org.ice.app.domain.User;
+import org.ice.app.domain.Jx;
 import org.ice.app.service.CommonService;
-import org.ice.core.MediaType;
+import org.ice.core.CMediaType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
+import java.util.List;
 
 /**
  * Created by admin on 2017/7/4.
@@ -20,11 +23,13 @@ import java.net.URI;
 @Path("/")
 public class CommonController {
 
+
     @Inject
     CommonService commonService;
 
+
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(CMediaType.TEXT_PLAIN)
     public Response index(@Context HttpServletRequest req) {
         System.out.println(req.getSession().getId());
         URI uri = UriBuilder.fromUri("https://www.baidu.com").build();
@@ -32,20 +37,33 @@ public class CommonController {
     }
 
 
-    @GET
-    @Path("user/{userId}/{userName}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getUser(@PathParam("userId") String userId, @PathParam("userName") String userName) {
-        return "User ID: " + userId + ", user name: " + userName;
+    @POST
+    @Path("jx")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(CMediaType.APPLICATION_JSON)
+    public void test(List<Jx> jxs) {
+        int i = 0;
+        for (Jx j : jxs) {
+            i++;
+            j.setId(i + "");
+            commonService.addJx(j);
+        }
     }
 
+
     @POST
-    @Path("g")
-    @Produces({MediaType.APPLICATION_JSON})
-    public String test() {
-        User s=commonService.sayHello();
-        Gson gson=new Gson();
-        return  gson.toJson(s);
+    @Path("jx2")
+    public void test2(String json) {
+        Gson gson = new Gson();
+        String s2 = json.toLowerCase();
+        List<Jx> jxs = gson.fromJson(s2,new TypeToken<List<Jx>>() {}.getType());
+        int i = 0;
+        for (Jx j : jxs) {
+            i++;
+            j.setId(i + "");
+            commonService.addJx(j);
+        }
     }
+
 
 }

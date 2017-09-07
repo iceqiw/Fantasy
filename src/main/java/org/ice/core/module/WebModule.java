@@ -16,6 +16,7 @@ public class WebModule extends ServletModule {
     protected void configureServlets() {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("com.sun.jersey.config.property.packages", "org.ice.app.controller");
+        parameters.put("com.sun.jersey.api.json.POJOMappingFeature", "true");
         filter("/*").through(LoginFilter.class);
         serve("/*").with(GuiceContainer.class, parameters);
     }

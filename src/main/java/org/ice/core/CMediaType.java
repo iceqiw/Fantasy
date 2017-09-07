@@ -1,6 +1,6 @@
 package org.ice.core;
 
-public class MediaType {
+public class CMediaType {
     /** The value of a type or subtype wildcard: "*" */
     public static final String MEDIA_TYPE_WILDCARD = "*";
 
