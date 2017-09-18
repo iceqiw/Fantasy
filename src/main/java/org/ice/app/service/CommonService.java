@@ -1,6 +1,5 @@
 package org.ice.app.service;
 
-import com.google.gson.Gson;
 import com.google.inject.Inject;
 import org.ice.app.domain.Jx;
 import org.ice.app.domain.User;
@@ -26,9 +25,8 @@ public class CommonService {
         jxMapper.addjx(j);
     }
 
-    public String searchTopic(String topic) {
+    public List<Jx> searchTopic(String topic) {
         List<Jx> j = jxMapper.search(topic);
-        Gson gson = new Gson();
-        return gson.toJson(j);
+        return j;
     }
 }

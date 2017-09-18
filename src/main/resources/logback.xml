@@ -25,7 +25,11 @@
 		</encoder>
 	</appender>
 
-	<root level="INFO">
+	<logger name="o.a.i.t.*" level="ERROR" />
+	<logger name="o.e.jetty" level="ERROR" />
+	<logger name="org.eclipse.jetty" level="ERROR" />
+
+	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILEOUT" />
 	</root>
